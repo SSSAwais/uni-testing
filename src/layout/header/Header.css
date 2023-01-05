@@ -1,0 +1,29 @@
+header a {
+    text-decoration: none;
+}
+
+header li {
+    list-style-type: none;
+    float: right;
+}
+
+header {
+    background: #3B9AE1;
+    padding: 25px 0px;
+    
+
+}
+
+header .col-lg-3 a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+header .col-lg-9 a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}
