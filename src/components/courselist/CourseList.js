@@ -10,7 +10,7 @@ const CourseListing=(props)=>{
                 <td><p>{subjectcode}</p></td>
                 <td><p>{teacher}</p></td>
                 <td><p>{credithours}</p></td>
-                <td><i className="fa-solid fa-circle-minus" title="delete course" onClick={pressDltCourse}></i></td>
+                <td><i className="fa-solid fa-circle-minus" title="delete course" onClick={()=>pressDltCourse(id)}></i></td>
             </tr>
         </>
 

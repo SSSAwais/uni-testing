@@ -18,7 +18,7 @@ const CourseForm = ({ onSubmitCourseData }) => {
     setPostCourse(newCourse);
   }
 
-  let url = "https://good-erin-ox-suit.cyclic.app/api/subject";
+  let url = "https://dark-gray-agouti-kit.cyclic.app/api/subject";
   const handleCourse = (e) => {
     e.preventDefault();
     console.log(postCourse, "hello");

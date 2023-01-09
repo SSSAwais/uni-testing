@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import axios from 'axios';
-let url = "https://good-erin-ox-suit.cyclic.app//api/subject";
+let url = "https://dark-gray-agouti-kit.cyclic.app/api/course";
 const gettingCourseData = (dynamicCourse) => {
   axios
     .get(url)
@@ -12,7 +12,7 @@ const gettingCourseData = (dynamicCourse) => {
         dynamicCourse([...response.data.results]);
       }
 
-      // console.log( ...response?.data?.results);
+      console.log( ...response?.data?.results);
     })
     .catch(function (error) {
       //handle error

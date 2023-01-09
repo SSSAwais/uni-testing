@@ -9,6 +9,8 @@ const TeacherTable = (props) => {
     course,
     passcode,
     pressDlt,
+    blocked,
+    _handleUpdate
   } = props;
 
   return (
@@ -24,15 +26,15 @@ const TeacherTable = (props) => {
           <h4>{teachername}</h4>
         </td>
         <td>
-          <p>{cnic}</p>
+          <p className="m-0">{cnic}</p>
         </td>
         <td>
-          <p>{qualification}</p>
+          <p className="m-0">{qualification}</p>
         </td>
         <td>
-          <p>{course}</p>
+          <p className="m-0">{course}</p>
         </td>
-        <td>{passcode}</td>
+        <td className="m-0">{passcode}</td>
 
         <td>
           {" "}
@@ -40,15 +42,19 @@ const TeacherTable = (props) => {
             className="form-select form-select-lg mb-0 select_option_teacher"
             aria-label=".form-select-lg example"
           >
-            <option selected className="">
+            {/* <option selected className="">
               Select Status
-            </option>
-            <option value="blocked">Blocked</option>
-            <option value="notblocked">Not Blocked</option>
+            </option> */}
+            {/* <option value="blocked">{blocked}</option> */}
+            {
+              blocked ?  <option value="blocked">Blocked</option>:  <option value="blocked">Un Blocked</option>
+            }
+          
           </select>
         </td>
         <td>
-          <i className="fa-solid fa-circle-minus" onClick={pressDlt}></i>
+          <i className="fa-solid fa-circle-minus" onClick={()=>pressDlt(id)}></i>
+          <i className="fa-solid fa-user-pen mx-2" onClick={()=>_handleUpdate(id)}></i>
         </td>
       </tr>
     </>

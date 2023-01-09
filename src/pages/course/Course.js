@@ -3,21 +3,37 @@ import "./Course.css";
 import CourseForm, { CourseList } from "../../components/courseForm/CourseForm";
 import CourseListing from "../../components/courselist/CourseList";
 import gettingCourseData, { courseDelete } from "../../controller/courseData";
+import axios from "axios";
 const Course = () => {
   const [courselisting, setCourseListing] = useState([]);
-  const gettingCoursedata=(data)=>{
+  const gettingCoursedata = (data) => {
     // setCourseListing([...courselisting,data]);
-  }
+  };
 
- const  handleCourseDlt =(e)=>{
-  courseDelete(e);
- }
+  const handleCourseDlt = (id) => {
+    axios
+      .delete(`https://dark-gray-agouti-kit.cyclic.app/api/course/${id}`).then((resp)=>{
+        console.log(resp,"deleted");
+      })
+      .catch((resp) => {
+        console.log(resp.data, "deleted");
+      });
+  };
 
+  useEffect(() => {
+    axios
+      .get("https://dark-gray-agouti-kit.cyclic.app/api/course")
+      .then((resp) => {
+        if (resp?.data?.success) {
+          setCourseListing(resp.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-useEffect(() => {
-  gettingCourseData(setCourseListing)
-}, [])
-
+   
+  }, []);
 
   return (
     <>
@@ -69,7 +85,7 @@ useEffect(() => {
                   role="tabpanel"
                   aria-labelledby="ex1-tab-1"
                 >
-                  <CourseForm onSubmitCourseData={gettingCoursedata}/>
+                  <CourseForm onSubmitCourseData={gettingCoursedata} />
                 </div>
                 <div
                   className="tab-pane fade"
@@ -84,22 +100,23 @@ useEffect(() => {
                           <th>#</th>
                           <th>Course title</th>
                           <th>Course Code</th>
-                          <th>Subject Code</th>
+                          <th>Subject Id</th>
                           <th>Teacher</th>
                           <th colSpan={2}>Credit Hours</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {courselisting.map((e, idx) => (
+                        {courselisting?.data?.map((e, idx) => (
                           <CourseListing
-                            key={idx}
-                            id={idx+1}
-                            coursetitle={e.name}
-                            coursecode={e.subCode}
-                            // subjectcode={e.subCode}
+                            key={e._id}
+                            id={e._id}
+                            idx={idx + 1}
+                            coursetitle={e.title}
+                            coursecode={e.courseCode}
+                            subjectcode={e.subjectId[e]}
                             // teacher={e.teacher}
                             credithours={e.creditHours}
-                            pressDltCourse={(e)=>handleCourseDlt(e)}
+                            pressDltCourse={(id) => handleCourseDlt(id)}
                           />
                         ))}
                       </tbody>
